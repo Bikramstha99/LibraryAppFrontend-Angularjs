@@ -1,0 +1,54 @@
+<style>
+.book-image{
+    height: 300px;
+}
+</style>
+<body>
+    <div class="container">
+        <div class="book-info">
+            <img class="book-image" src="https://localhost:7169/{{book.photoPath}}" alt="Movie Poster">
+        </div>
+        <div class="book-details">
+            <h1>Movie Detail</h1>
+            <dl class="product-detail">
+                <dt>Name:</dt>
+                <dd>{{ book.bookName }}</dd>
+  
+                <dt>Writer:</dt>
+                <dd>{{ book.writer }}</dd>
+  
+                <dt>Genre:</dt>
+                <dd>{{ book.genre }}</dd>
+  
+                <dt>Release Date:</dt>
+                <dd>{{ book.releaseDate }}</dd>
+            </dl>
+        </div>
+    </div>
+  
+    <div class="comments-section">
+        <div class="comments-box">
+            <h2>Comments:</h2>
+            <ul class="comments-list">
+                <li class="comment-item" *ngFor="let comment of comments; let i = index">
+                    {{ comment.commentDesc }}
+                </li>
+            </ul>
+        </div>
+    </div>
+  
+    <div class="comment-form-container">
+        <h3 class="heading">Add A Comment Below</h3>
+        <form class="comment-form" (ngSubmit)="addComment()">
+        <div class="comment-form">
+            <textarea class="form-control status-box" rows="3" id="commentText" [(ngModel)]="comment.commentDesc" placeholder="Enter your comment here..." name="commentText" required></textarea>
+            <div class="button-group pull-right">
+                <button type="submit" class="btn btn-primary">Post</button>
+            </div>
+        </div>
+      </form>
+        <ul class="posts">
+        </ul>
+    </div>
+  </body>
+  

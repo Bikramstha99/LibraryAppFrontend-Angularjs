@@ -1,0 +1,35 @@
+/* Style for Navbar Brand */
+.navbar-brand {
+    font-family: 'Arial', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff5733; /* Text color */
+    text-decoration: none;
+    transition: color 0.3s ease; /* Add smooth transition for color change */
+}
+
+/* Change color on hover */
+.navbar-brand:hover {
+    color: #ff8c66; /* Change the hover color to your preference */
+}
+
+/* Style for Nav Items */
+.nav-link {
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333; /* Text color */
+    text-decoration: none;
+    transition: color 0.3s ease; /* Add smooth transition for color change */
+}
+
+/* Change color on hover */
+.nav-link:hover {
+    color: #ff5733; /* Change the hover color to your preference */
+}
+
+/* Darken the background color */
+.navbar {
+    background-color: #1a1a1a; /* A dark gray color for the background */
+    padding: 10px 0;
+}

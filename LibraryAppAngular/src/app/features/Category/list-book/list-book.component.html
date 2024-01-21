@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Books</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@angular/material/prebuilt-themes/indigo-pink.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        .book-card {
+            max-width: 300px;
+            margin: 10px;
+        }
+        .book-card {
+        max-width: 300px;
+        margin: 10px;
+        transition: transform 0.3s; 
+    }
+
+    .book-card:hover {
+        transform: scale(1.05); 
+    }
+    
+
+        
+.search-hero {
+    background-color: #f5f5f5;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.small-search-bar {
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.mat-input-element {
+    font-size: 16px; 
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #757575;
+    cursor: pointer;
+}
+
+.mat-input-underline {
+    border-color: #1976D2; 
+}
+
+.mat-input-underline.mat-focused {
+    border-color: #1976D2; 
+    box-shadow: none;
+}
+
+::placeholder {
+    color: #757575; 
+    opacity: 1; 
+}
+
+
+.mat-input-element {
+    color: #333; 
+}
+
+
+.search-icon:hover {
+    color: #2196F3; 
+}
+
+
+        .pagination {
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="search-hero mb-4 position-relative">
+        <div class="input-group small-search-bar mx-auto">
+            <input matInput type="text" name="search" [(ngModel)]="searchText" placeholder="Search By Book Name"
+                class="form-control pr-5">
+            <span class="material-icons search-icon">search</span>
+        </div>
+    </div>
+    <div class="container-fluid mt-3">
+        <div class="flex justify-end mb-2">
+            <button *ngIf="authService.getRoleFromToken() === 'Admin'" routerLink="/admin/categories/add" mat-raised-button color="primary">
+                Add Book
+              </button>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div class="book-card hover-card" *ngFor="let book of pagedBooks | searchFilter: searchText">
+                <mat-card>
+                    <img mat-card-image src="https://localhost:7169/{{book.photoPath}}" alt="Book Poster">
+                    <mat-card-content>
+                        <h2>{{ book.bookName }}</h2>
+                        <!-- <p>Genre: {{ movie.genre }}</p>
+                        <p>Director: {{ movie.director }}</p>
+                        <p>Release Date: {{ movie.releaseDate }}</p> -->
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button *ngIf="authService.getRoleFromToken() === 'Admin'" mat-button color="primary" (click)="goToItemEdit(book)">Edit</button>
+                        <button mat-button color="primary" (click)="goToItemDetails(book)">Detail</button>
+                        <button *ngIf="authService.getRoleFromToken() === 'Admin'" mat-button color="warn" (click)="goToItemDelete(book)">Delete</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <mat-paginator [length]="totalBooks" [pageSize]="pageSize" (page)="onPageChange($event)"
+                    showFirstLastButtons></mat-paginator>
+            </div>
+        </div>
+        
+        
+        <!-- can -->
+    </div>
+
+    <!-- Add Angular Material scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular-sanitize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@angular/material@12.2.13/bundles/material.umd.js"></script>
+
+    <!-- Add your Angular scripts and components here -->
+
+</body>
+</html>
+
+

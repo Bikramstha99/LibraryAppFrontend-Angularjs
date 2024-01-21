@@ -1,0 +1,26 @@
+<div class="container mt-5">
+    <h1 class="text-3xl font-semibold mb-4">List Of Users</h1>
+    <div class="search-hero">
+        <input type="text" name="search" [(ngModel)]="searchText" placeholder="Search By UserName" class="search-input">
+    </div> 
+
+    <div *ngIf="users.length > 0; else noUsers" class="user-table">
+        <div *ngFor="let user of users | searchUserFilter: searchText" class="user-card">
+            <div class="user-info">
+                <div class="user-id">{{ user.userId }}</div>
+                <div class="user-details">
+                    <div class="user-name">{{ user.userName }}</div>
+                    <div class="user-email">{{ user.email }}</div>
+                </div>
+            </div>
+            <div class="user-actions">
+                <button (click)="goToItemDetails(user)" class="btn btn-primary">Detail</button>
+                <button (click)="goToItemDelete(user)" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #noUsers>
+        <p>No users available.</p>
+    </ng-template>
+</div>

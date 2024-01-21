@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Slide Navbar</title>
+	<link rel="stylesheet" type="text/css" href="./login.component.scss">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="main">  	
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="signup">
+				<form>
+					<label for="chk" aria-hidden="true">Sign up</label>
+					<input type="text" name="txt" placeholder="User name" [(ngModel)]="signupObj.UserName">
+					<input type="password" name="pswd" placeholder="Password" [(ngModel)]="signupObj.Password">
+					<input type="password" name="ConfirmPassword" placeholder="ConfirmPassword" [(ngModel)]="signupObj.ConfirmPassword">
+					<div class="error-message" *ngIf="signupObj.Password !== signupObj.ConfirmPassword  && signupObj.Password && signupObj.ConfirmPassword">
+						Passwords do not match.
+					  </div>
+					  <input type="email" name="email" placeholder="Email" [(ngModel)]="signupObj.Email" required email #email="ngModel">
+					  <div *ngIf="formSubmitted && email.invalid && (email.dirty || email.touched)">
+						<div class="error-message" *ngIf="email.hasError('required')">
+							Email is required.
+						</div>
+						
+					</div>
+					<div class="error-message" *ngIf="email.hasError('email')">
+						Please enter a valid email.
+					</div>
+					
+					<input type="text" name="FirstName" placeholder="FirstName" [(ngModel)]="signupObj.FirstName">
+					<input type="text" name="LastName" placeholder="LastName" [(ngModel)]="signupObj.LastName">
+					<div class="error-messages" *ngIf="formSubmitted && !validateForm()">
+						Please check the form fields.
+					  </div>
+
+					  <div class="success-message" *ngIf="formSubmitted && validateForm()">
+						User Register Successfully!!!
+					  </div>
+					<button (click)="onSignUp()" >Sign up</button>n>
+				</form>
+			</div>
+
+			<div class="login">
+				<form>
+					<label for="chk" aria-hidden="true">Login</label>
+					<input type="email" name="email" placeholder="Email" [(ngModel)]="loginObj.Email" #emailInput="ngModel" required email>
+					<div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">
+						<div class="error-message" *ngIf="emailInput.hasError('required')">
+							Email is required.
+						</div>
+						<div class="error-message" *ngIf="emailInput.hasError('email') && !emailInput.hasError('required')">
+							Please enter a valid email.
+						</div>
+					</div>
+					<input type="password" name="pswd" placeholder="Password" [(ngModel)]="loginObj.Password" required>
+
+						<!-- <div class="error-message">
+							Email or password incorrect.
+						</div> -->
+				
+					<button (click)="onLogin()">Login</button>
+				</form>
+			</div>
+			</div>
+			
+			
+</body>
+</html>
+

@@ -22,6 +22,9 @@ export class NavbarComponent {
     debugger
     localStorage.removeItem('token');
     this.router.navigate(['']); // Assuming 'login' is the route path for your login page
+    for (let i = 0; i < window.history.length - 1; i++) {
+      window.history.pushState(null, '', '');
+    }
   }
 
 }
